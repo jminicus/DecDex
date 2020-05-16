@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    High Jump
+{% endblock %}
+
+{% block main %}
+    <h2 style="margin-top: 1cm; margin-bottom: 0.8cm;">
+        High Jump
+    </h2>
+    <hr style="width: 50%;">
+    <div style="text-align: center; width: 50%; margin: auto; margin-top: 1cm;">
+        <h3>
+            The high jump is one of the most technical events in the decathlon. The aim is to jump and backbend over a bar,
+            but there are many components of this event that have to work together smoothly for this to happen - the approach,
+            takeoff, and arch. Below, store some cues to help you remember how to put all these moving parts together and jump high.
+        </h3>
+        <hr style="width: 50%; margin-top: 1cm;">
+    </div>
+    <div style="text-align: center;">
+        <form id="highjumpform" style="padding: 0.5cm;" action="/highjump" method="post">
+            <h3>
+                {{ header }}
+            </h3>
+            <textarea style="margin: auto; margin-top: 1cm;" autocomplete="off" class="form-control" name="highjumpcues" id="highjumpcues" rows="5" cols="80">{{ text }}</textarea>
+            <button style="margin-top: 1cm;" class="btn btn-primary" id="submitlog" type="submit">{{ button }}</button>
+        </form>
+    </div>
+    <hr style="width: 50%; padding-bottom: 0.5cm;">
+    <div style="text-align: center;">
+        <h2 style="padding-bottom: 1cm;">
+            Jumping News
+        </h2>
+        <a data-width="700" data-height="650" class="twitter-timeline" data-chrome="noheader" href="https://twitter.com/jumpersworld_?ref_src=twsrc%5Etfw"></a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <script>
+        document.getElementById('highjumpform').onsubmit = function () {
+            if (document.getElementById("highjumpcues").value == "") {
+                alert("Your cues have been reset!");
+            }
+            else {
+                alert("Your cues have been saved!");
+            }
+        };
+    </script>
+{% endblock %}

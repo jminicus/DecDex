@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Javelin
+{% endblock %}
+
+{% block main %}
+    <h2 style="margin-top: 1cm; margin-bottom: 0.8cm;">
+        Javelin
+    </h2>
+    <hr style="width: 50%;">
+    <div style="text-align: center; width: 50%; margin: auto; margin-top: 1cm;">
+        <h3>
+            The javelin throw is the throwing event that decathletes can really excel in compared to your average thrower.
+            This event is mostly about speed, mobility, and a lot of intricate technique. With a solid block and good shoulder
+            mobility, a decathlete can score a lot of points in this event. Below, store some cues to help you launch this spear
+            farther than your competitors.
+        </h3>
+        <hr style="width: 50%; margin-top: 1cm;">
+    </div>
+    <div style="text-align: center;">
+        <form id="javelinform" style="padding: 0.5cm;" action="/javelin" method="post">
+            <h3>
+                {{ header }}
+            </h3>
+            <textarea style="margin: auto; margin-top: 1cm;" autocomplete="off" class="form-control" name="javelincues" id="javelincues" rows="5" cols="80">{{ text }}</textarea>
+            <button style="margin-top: 1cm;" class="btn btn-primary" id="submitlog" type="submit">{{ button }}</button>
+        </form>
+    </div>
+    <hr style="width: 50%; padding-bottom: 0.5cm;">
+    <div style="text-align: center;">
+        <h2 style="padding-bottom: 1cm;">
+            Javelin News
+        </h2>
+        <a data-width="700" data-height="650" class="twitter-timeline" data-chrome="noheader" href="https://twitter.com/thomasroehler?ref_src=twsrc%5Etfw"></a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <script>
+        document.getElementById('javelinform').onsubmit = function () {
+            if (document.getElementById("javelincues").value == "") {
+                alert("Your cues have been reset!");
+            }
+            else {
+                alert("Your cues have been saved!");
+            }
+        };
+    </script>
+{% endblock %}

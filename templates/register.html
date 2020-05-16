@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <h2 style="margin-top: 1cm; margin-bottom: 0.8cm;">
+        Register an account
+    </h2>
+    <hr style="width: 50%;">
+    <div style="text-align: center;">
+        <form id="form" action="/register" method="post">
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" id ="name" name="name" placeholder="Full Name" type="text">
+            </div>
+            <hr>
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" id ="username" name="username" placeholder="Username" type="text">
+            </div>
+            <hr>
+            <div class="form-group">
+                <input class="form-control" id="password" name="password" placeholder="Password" type="password">
+            </div>
+            <hr>
+            <div class="form-group">
+                <input class="form-control" id="confirmation" name="confirmation" placeholder="Confirm Password" type="password">
+            </div>
+            <hr>
+            <button class="btn btn-primary" type="submit">Register Account</button>
+        </form>
+        <h3 style="font-size: 20px;">
+                Already have an account? Click <a href="/login">here</a> to log in.
+        </h3>
+    </div>
+    <script>
+        document.getElementById('form').onsubmit = function () {
+            if (document.getElementById("username").value == "") {
+                alert("Please enter a username.");
+                return false;
+            }
+            if (document.getElementById("name").value == "") {
+                alert("Please enter your full name.");
+                return false;
+            }
+            if (document.getElementById("username").value.length < 6) {
+                alert("Username must be at least 6 characters");
+                return false;
+            }
+            if (document.getElementById("password").value == "") {
+                alert("Please enter a password.");
+                return false;
+            }
+            if (document.getElementById("password").value.length < 6) {
+                alert("Password must be at least 6 characters");
+                return false;
+            }
+            if (document.getElementById("password").value != document.getElementById("confirmation").value) {
+                alert("Your passwords do not match.");
+                return false;
+            }
+        };
+    </script>
+{% endblock %}

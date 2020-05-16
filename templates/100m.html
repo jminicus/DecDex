@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    100m
+{% endblock %}
+
+{% block main %}
+    <h2 style="margin-top: 1cm; margin-bottom: 0.8cm;">
+        100m Dash
+    </h2>
+    <hr style="width: 50%;">
+    <div style="text-align: center; width: 50%; margin: auto; margin-top: 1cm;">
+        <h3>
+            The 100 meter dash is the perfect start to the decathlon: a test of pure speed and power. From the start
+            to the finish, the athlete is exerting full force. However, the event is a lot more technical than it looks,
+            especially in the technique of utilizing a block start. Below, store some cues to help you perform to the best
+            of your capability.
+        </h3>
+        <hr style="width: 50%; margin-top: 1cm;">
+    </div>
+    <div style="text-align: center;">
+        <form id="100mform" style="padding: 0.5cm;" action="/100m" method="post">
+            <h3>
+                {{ header }}
+            </h3>
+            <textarea style="margin: auto; margin-top: 1cm;" autocomplete="off" class="form-control" name="100mcues" id="100mcues" rows="5" cols="80">{{ text }}</textarea>
+            <button style="margin-top: 1cm;" class="btn btn-primary" id="submitlog" type="submit">{{ button }}</button>
+        </form>
+    </div>
+    <hr style="width: 50%; padding-bottom: 0.5cm;">
+    <div style="text-align: center;">
+        <h2 style="padding-bottom: 1cm;">
+            Sprinting News
+        </h2>
+        <a data-width="700" data-height="650" class="twitter-timeline" data-chrome="noheader" href="https://twitter.com/SprintingFast?ref_src=twsrc%5Etfw"></a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <script>
+        document.getElementById('100mform').onsubmit = function () {
+            if (document.getElementById("100mcues").value == "") {
+                alert("Your cues have been reset!");
+            }
+            else {
+                alert("Your cues have been saved!");
+            }
+        };
+    </script>
+{% endblock %}

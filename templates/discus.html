@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Discus
+{% endblock %}
+
+{% block main %}
+    <h2 style="margin-top: 1cm; margin-bottom: 0.8cm;">
+        Discus
+    </h2>
+    <hr style="width: 50%;">
+    <div style="text-align: center; width: 50%; margin: auto; margin-top: 1cm;">
+        <h3>
+            The discus throw is a good combination of strength, balance, and flexibility. Since decathletes are
+            usually a bit smaller than your average discus thrower, they must have solid experience and technique with
+            this event to not lose points, or worse, foul out. Below, store some cues to help you spin in the discus circle
+            with ease.
+        </h3>
+        <hr style="width: 50%; margin-top: 1cm;">
+    </div>
+    <div style="text-align: center;">
+        <form id="discusform" style="padding: 0.5cm;" action="/discus" method="post">
+            <h3>
+                {{ header }}
+            </h3>
+            <textarea style="margin: auto; margin-top: 1cm;" autocomplete="off" class="form-control" name="discuscues" id="discuscues" rows="5" cols="80">{{ text }}</textarea>
+            <button style="margin-top: 1cm;" class="btn btn-primary" id="submitlog" type="submit">{{ button }}</button>
+        </form>
+    </div>
+    <hr style="width: 50%; padding-bottom: 0.5cm;">
+    <div style="text-align: center;">
+        <h2 style="padding-bottom: 1cm;">
+            Throwing News
+        </h2>
+        <a data-width="700" data-height="650" class="twitter-timeline" data-chrome="noheader" href="https://twitter.com/nationalthrows?ref_src=twsrc%5Etfw"></a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <script>
+        document.getElementById('discusform').onsubmit = function () {
+            if (document.getElementById("discuscues").value == "") {
+                alert("Your cues have been reset!");
+            }
+            else {
+                alert("Your cues have been saved!");
+            }
+        };
+    </script>
+{% endblock %}

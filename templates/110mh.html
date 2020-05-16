@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    110mh
+{% endblock %}
+
+{% block main %}
+    <h2 style="margin-top: 1cm; margin-bottom: 0.8cm;">
+        110m Hurdles
+    </h2>
+    <hr style="width: 50%;">
+    <div style="text-align: center; width: 50%; margin: auto; margin-top: 1cm;">
+        <h3>
+            The morning of the second day, most decathletes will be pretty sore. However, they must go back out on the track
+            for another full day of competition, starting with hurdles. This event is super technical, and an athlete with good
+            mobility and speed can dominate this event. Below, store some cues to help you move over the hurdles fast and smooth.
+        </h3>
+        <hr style="width: 50%; margin-top: 1cm;">
+    </div>
+    <div style="text-align: center;">
+        <form id="110mhform" style="padding: 0.5cm;" action="/110mh" method="post">
+            <h3>
+                {{ header }}
+            </h3>
+            <textarea style="margin: auto; margin-top: 1cm;" autocomplete="off" class="form-control" name="110mhcues" id="110mhcues" rows="5" cols="80">{{ text }}</textarea>
+            <button style="margin-top: 1cm;" class="btn btn-primary" id="submitlog" type="submit">{{ button }}</button>
+        </form>
+    </div>
+    <hr style="width: 50%; padding-bottom: 0.5cm;">
+    <div style="text-align: center;">
+        <h2 style="padding-bottom: 1cm;">
+            Hurdling News
+        </h2>
+        <a data-width="700" data-height="650" class="twitter-timeline" data-chrome="noheader" href="https://twitter.com/SprintingFast?ref_src=twsrc%5Etfw"></a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <script>
+        document.getElementById('110mhform').onsubmit = function () {
+            if (document.getElementById("110mhcues").value == "") {
+                alert("Your cues have been reset!");
+            }
+            else {
+                alert("Your cues have been saved!");
+            }
+        };
+    </script>
+{% endblock %}

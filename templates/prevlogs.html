@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Previous Logs
+{% endblock %}
+
+{% block main %}
+    <h2 style="margin-top: 1cm; margin-bottom: 0.8cm;">
+        Previous training logs
+    </h2>
+    <hr style="width: 50%;">
+    <h3 style="font-size: 20px; text-align: center; padding-top: 0.8cm;">
+        Click on an log to delete it, or click <a href="/newlog">here</a> to enter a new log.
+    </h3>
+    <table class="table table-bordered" style="width: 75%; margin: auto; margin-top: 1.2cm; border: none; text-align: center;">
+        <thead style="background-color: white; color: #353942;">
+            <tr>
+                <th style="width: 3cm;" scope="col">Date</th>
+                <th scope="col">Events</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Good</th>
+                <th scope="col">Bad</th>
+            </tr>
+        </thead>
+        <tbody style="color: #353942;">
+            {% for log in logs %}
+                <tr class="clickable" onclick="removelog(this)" id="{{ log['id'] }}">
+                    <td>{{ log["date"] }}</td>
+                    <td>{{ log["events"] }}</td>
+                    <td>{{ log["rating"] }}</td>
+                    <td>{{ log["good"] }}</td>
+                    <td>{{ log["bad"] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div style="text-align: center;">
+        <form style="visibility: hidden; height: 0px;" id="form" type="submit" action="/prevlogs" method="post">
+            <input id="remove" name="remove" style="visibility: hidden;">0</input>
+        </form>
+    </div>
+    <script>
+        function removelog (ele) {
+            document.getElementById("remove").value = ele.id;
+            if (confirm("Are you sure you want to delete this log?")) {
+                document.getElementById("form").submit();}
+        }
+    </script>
+{% endblock %}

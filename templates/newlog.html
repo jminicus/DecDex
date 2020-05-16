@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    New Log
+{% endblock %}
+
+{% block main %}
+    <h2 style="margin-top: 1cm; margin-bottom: 0.8cm;">
+        Add a new training log
+    </h2>
+    <hr style="width: 50%;">
+    <div style="text-align: center;">
+        <form id="form" style="padding: 0.5cm;" action="/newlog" method="post">
+            <h3>
+                Date of session
+            </h3>
+            <input style="width: 50%; margin-left: 2.85cm; margin-top: 0.5cm; margin-bottom: 1cm;" class="form-control" name="date" type="date" id="date">
+            <h3>
+                How quality was this session?
+            </h3>
+            <table style="margin-top: 0.5cm; margin-bottom: 1cm; margin-left: 2cm">
+                <div class="btn-grou">
+                    <td style="padding-right: 0.4cm;"><button data-toggle="button" type="button" class="btn btn-outline-danger" id="poor">Poor</button></td>
+                    <td style="padding-left: 0.75cm;"><button data-toggle="button" type="button" class="btn btn-outline-secondary" id="average">Average</button></td>
+                    <td style="padding-left: 1.1cm;"><button data-toggle="button" type="button" class="btn btn-outline-success" id="great">Great</button></td>
+                </div>
+                </tr>
+            </table>
+            <h3>
+                Which events did you train?
+            </h3>
+            <div style="margin-top: 0.5cm; margin-bottom: 1cm;" required class="form-group">
+                <textarea style="margin: auto;" autocomplete="off" class="form-control" name="events" id="events" rows="1" cols="50"></textarea>
+            </div>
+            <h3>
+                What went well?
+            </h3>
+            <div style="margin-top: 0.5cm; margin-bottom: 1cm;" required class="form-group">
+                <textarea style="margin: auto;" autocomplete="off" class="form-control" name="good" id="good" rows="5" cols="50"></textarea>
+            </div>
+            <h3>
+                What went poorly?
+            </h3>
+            <div style="margin-top: 0.5cm; margin-bottom: 1cm;" required class="form-group">
+                <textarea style="margin: auto;" autocomplete="off" class="form-control" name="bad" id="bad" rows="5" cols="50"></textarea>
+            </div>
+            <hr style="margin-top: 1cm; margin-bottom: 1cm;">
+            <button style="margin-left: 4.7cm;" class="btn btn-primary" id="submitlog" type="submit">Submit Log</button>
+            <input id="rate" name="rate" style="visibility: hidden;">
+            </input>
+        </form>
+    </div>
+    <script>
+        document.getElementById('poor').onclick = function() {
+            document.getElementById('average').className = "btn btn-outline-secondary";
+            document.getElementById('great').className = "btn btn-outline-success";
+            document.getElementById('rate').value = "Poor";
+        };
+        document.getElementById('average').onclick = function() {
+            document.getElementById('rate').value = "Average";
+            document.getElementById('poor').className = "btn btn-outline-danger";
+            document.getElementById('great').className = "btn btn-outline-success";
+
+        };
+        document.getElementById('great').onclick = function() {
+            document.getElementById('average').className = "btn btn-outline-secondary";
+            document.getElementById('poor').className = "btn btn-outline-danger";
+            document.getElementById('rate').value = "Great";
+        };
+        document.getElementById('form').onsubmit = function () {
+            if (document.getElementById("date").value == "") {
+                alert("Please specify the date of this session.");
+                return false;
+            }
+            if (document.getElementById("poor").className == "btn btn-outline-danger" &&
+                document.getElementById("average").className == "btn btn-outline-secondary" &&
+                document.getElementById("great").className == "btn btn-outline-success") {
+                alert("Please rate your session.");
+                return false;
+            }
+            if (document.getElementById("events").value == "") {
+                alert("Please specify which events you trained.");
+                return false;
+            }
+            if (document.getElementById("good").value == "") {
+                alert("Please specify what went well.");
+                return false;
+            }
+            if (document.getElementById("bad").value == "") {
+                alert("Please specify what went poorly.");
+                return false;
+            }
+            alert("Submitted!");
+        };
+    </script>
+{% endblock %}

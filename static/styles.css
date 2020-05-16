@@ -1,0 +1,65 @@
+body {
+    background-color: aliceblue;
+}
+
+::selection
+{
+    background: #353942;
+    color: aliceblue;
+}
+
+#icon:hover {
+    cursor: default;
+}
+
+h1 {
+    text-align: center;
+    color: #353942;
+    padding-top: 0.75cm;
+    font-weight: 200;
+    font-size: 65px;
+}
+
+h2 {
+    text-align: center;
+    color: #353942;
+    font-weight: 200;
+    font-size: 30px;
+}
+
+h3 {
+    color: #353942;
+    font-weight: 200;
+    font-size: 20px;
+}
+
+.clickable:hover {
+    background: #ed7777;
+    color: white;
+    cursor: pointer;
+}
+
+.calcnews {
+    text-align: center;
+    color: #353942;
+    font-weight: 200;
+    font-size: 30px;
+    padding-top: 0.75cm;
+    padding-left: 7cm;
+    padding-right: 8.5cm;
+}
+
+form {
+    padding: 40px;
+    display: inline-block;
+}
+
+footer {
+    color: #353942;
+    padding: 1cm;
+}
+
+#calc td {
+    text-align: center;
+}
+

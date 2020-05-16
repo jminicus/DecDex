@@ -1,0 +1,194 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block main %}
+    <h1>
+        Welcome to your DecDex
+    </h1>
+    <h2 style="padding-bottom: 0.5cm; padding-top: 0.2cm;">
+        The decathlon home for you, {{ name }}
+    </h2>
+    <hr style="width: 50%;">
+    <h3 style="text-align: center; padding: 0.5cm; width: 75%; margin: auto;">
+        <p>
+            The best decathlete is widely regarded as "the best athlete in the world", and this is for good reason. A decathlete is a track and field
+            athlete who competes in almost everything - the 100 meter dash, long jump, shotput, high jump, 400 meter dash, 110 meter hurdles,
+            discus, pole vault, javelin, and the 1500 meter run - over the span of two days. Depending on how well the athlete does in each event,
+            a certain number of points is rewarded. At the end, the athlete with the most points is declared the winner.
+        </p>
+        <p>
+            The life of a decathlete is hectic - DecDex aims to make it a little less so. Below, you can get up to date on track and field news,
+            or you can set some goals by using the decathlon scoring table calculator. You may also select a category of events above to find some tips
+            for each event or store your own cues. Go to the training log section to add summaries of your training sessions or to add a new session.
+            Thank you for using DecDex!
+        </p>
+    </h3>
+    <hr style="width: 50%;">
+        <ul>
+        <table style="margin-right: 5cm;">
+            <tr>
+                <th class="calcnews">Calculator</th>
+                <th class="calcnews">News</th>
+            </tr>
+        </table>
+    <table id="calc">
+        <tr>
+            <td style="width: 20cm; padding-top: 1.3cm; padding-left: 1cm;">
+                <table class="table table-bordered" style="width: 15.5cm; height: 6cm;">
+                    <thead style="background-color: white; color: #353942;">
+                        <tr>
+                            <th>Event</th>
+                            <th>Mark</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <td style="text-align: center; font-weight: bold;" colspan="3">Total Points = <output type="number" id="total">0</output></td>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr>
+                            <td>100m (sec)</td>
+                            <td><input autocomplete="off" id="100m" type="number"></td>
+                            <td><output id="p_100m">0</td>
+                        </tr>
+                        <tr>
+                            <td>Long Jump (m)</td>
+                            <td><input autocomplete="off" id="longjump" type="number"></td>
+                            <td><output id="p_longjump">0</td>
+                        </tr>
+                        <tr>
+                            <td>Shotput (m)</td>
+                            <td><input autocomplete="off" id="shotput" type="number"></td>
+                            <td><output id="p_shotput">0</td>
+                        </tr>
+                        <tr>
+                            <td>High Jump (m)</td>
+                            <td><input autocomplete="off" id="highjump" type="number"></td>
+                            <td><output id="p_highjump">0</td>
+                        </tr>
+                        <tr>
+                            <td>400m (sec)</td>
+                            <td><input autocomplete="off" id="400m" type="number"></td>
+                            <td><output id="p_400m">0</td>
+                        </tr>
+                        <tr>
+                            <td>110mH (sec)</td>
+                            <td><input autocomplete="off" id="110mh" type="number"></td>
+                            <td><output id="p_110mh">0</td>
+                        </tr>
+                        <tr>
+                            <td>Discus (m)</td>
+                            <td><input autocomplete="off" id="discus" type="number"></td>
+                            <td><output id="p_discus">0</td>
+                        </tr>
+                        <tr>
+                            <td>Pole Vault (m)</td>
+                            <td><input autocomplete="off" id="polevault" type="number"></td>
+                            <td><output id="p_polevault">0</td>
+                        </tr>
+                        <tr>
+                            <td>Javelin (m)</td>
+                            <td><input autocomplete="off" id="javelin" type="number"></td>
+                            <td><output id="p_javelin">0</td>
+                        </tr>
+                        <tr>
+                            <td>1500m (sec)</td>
+                            <td><input autocomplete="off" id="1500m" type="number"></td>
+                            <td><output id="p_1500m">0</td>
+                        </tr>
+                    </tbody>
+                    </tr>
+                </table>
+            </td>
+            <td style="width: 70%; padding-right: 2cm;">
+                <div style="text-align: right; padding-top: 1cm;">
+                    <a data-width="600" data-height="650" class="twitter-timeline" data-chrome="noheader" href="https://twitter.com/tandfn?ref_src=twsrc%5Etfw">Tweets by tandfn</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <script>
+        function total() {
+            document.getElementById('total').value = parseInt(document.getElementById('p_100m').value) + parseInt(document.getElementById('p_longjump').value)
+            + parseInt(document.getElementById('p_shotput').value) + parseInt(document.getElementById('p_highjump').value) + parseInt(document.getElementById('p_400m').value)
+            + parseInt(document.getElementById('p_110mh').value) + parseInt(document.getElementById('p_discus').value) + parseInt(document.getElementById('p_polevault').value)
+            + parseInt(document.getElementById('p_javelin').value) + parseInt(document.getElementById('p_1500m').value);
+        }
+        document.getElementById('100m').onchange = function() {
+            document.getElementById('p_100m').value = Math.floor(25.4347 * Math.pow((18 - document.getElementById('100m').value), 1.81));
+            if (document.getElementById('100m').value == 0) {
+                document.getElementById('p_100m').value = 0;
+            }
+            total();
+        };
+        document.getElementById('longjump').onchange = function() {
+            document.getElementById('p_longjump').value = Math.floor(0.14354 * Math.pow((100 * document.getElementById('longjump').value) - 220, 1.4));
+            if (document.getElementById('longjump').value == 0) {
+                document.getElementById('p_longjump').value = 0;
+            }
+            total();
+        };
+        document.getElementById('shotput').onchange = function() {
+            document.getElementById('p_shotput').value = Math.floor(51.39 * Math.pow(document.getElementById('shotput').value - 1.5, 1.05));
+            if (document.getElementById('shotput').value == 0) {
+                document.getElementById('p_shotput').value = 0;
+            }
+            total();
+        };
+        document.getElementById('highjump').onchange = function() {
+            document.getElementById('p_highjump').value = Math.floor(0.8465 * Math.pow((100 * document.getElementById('highjump').value) - 75, 1.42));
+            if (document.getElementById('highjump').value == 0) {
+                document.getElementById('p_highjump').value = 0;
+            }
+            total();
+        };
+        document.getElementById('400m').onchange = function() {
+            document.getElementById('p_400m').value = Math.floor(1.53775 * Math.pow((82 - document.getElementById('400m').value), 1.81));
+            if (document.getElementById('400m').value == 0) {
+                document.getElementById('p_400m').value = 0;
+            }
+            total();
+        };
+        document.getElementById('110mh').onchange = function() {
+            document.getElementById('p_110mh').value = Math.floor(5.74352 * Math.pow((28.5 - document.getElementById('110mh').value), 1.92));
+            if (document.getElementById('110mh').value == 0) {
+                document.getElementById('p_110mh').value = 0;
+            }
+            total();
+        };
+        document.getElementById('discus').onchange = function() {
+            document.getElementById('p_discus').value = Math.floor(12.91 * Math.pow(document.getElementById('discus').value - 4, 1.1));
+            if (document.getElementById('discus').value == 0) {
+                document.getElementById('p_discus').value = 0;
+            }
+            total();
+        };
+        document.getElementById('polevault').onchange = function() {
+            document.getElementById('p_polevault').value = Math.floor(0.2797 * Math.pow((100 * document.getElementById('polevault').value) - 100, 1.35));
+            if (document.getElementById('polevault').value == 0) {
+                document.getElementById('p_polevault').value = 0;
+            }
+            total();
+        };
+        document.getElementById('javelin').onchange = function() {
+            document.getElementById('p_javelin').value = Math.floor(10.14 * Math.pow(document.getElementById('javelin').value - 7, 1.08));
+            if (document.getElementById('javelin').value == 0) {
+                document.getElementById('p_javelin').value = 0;
+            }
+            total();
+        };
+        document.getElementById('1500m').onchange = function() {
+            document.getElementById('p_1500m').value = Math.floor(0.03768 * Math.pow((480 - document.getElementById('1500m').value), 1.85));
+            if (document.getElementById('1500m').value == 0) {
+                document.getElementById('p_1500m').value = 0;
+            }
+            total();
+        };
+    </script>
+{% endblock %}

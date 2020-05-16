@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <h2 style="margin-top: 1cm; margin-bottom: 0.8cm;">
+        Login
+    </h2>
+    <hr style="width: 50%;">
+    <div style="text-align: center;">
+        <form id="form" action="/login" method="post">
+                <input autocomplete="off" autofocus class="form-control" id="username" name="username" placeholder="Username" type="text">
+                <hr>
+            <div class="form-group">
+                <input class="form-control" name="password" id="password" placeholder="Password" type="password">
+            </div>
+            <hr>
+            <button class="btn btn-primary" type="submit">Log In</button>
+        </form>
+        <h3 style="font-size: 20px;">
+            Don't have an account? Click <a href="/register">here</a> to make one.
+        </h3>
+    </div>
+    <script>
+        document.getElementById('form').onsubmit = function () {
+            if (document.getElementById("username").value == "") {
+                alert("Please enter your username.");
+                return false;
+            }
+            if (document.getElementById("password").value == "") {
+                alert("Please enter your password.");
+                return false;
+            }
+        };
+    </script>
+{% endblock %}
